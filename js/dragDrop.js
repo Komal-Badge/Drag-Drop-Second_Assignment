@@ -34,7 +34,7 @@ function onDragOver(event) {
     event.preventDefault();
     event.stopPropagation();
 }
-function dragEnd(event){
+function dragEnd(event) {
     event.target.style.border = "";
     resetHover();
 }
@@ -68,15 +68,15 @@ function drop(event) {
 function allowDrop(event) {
     event.preventDefault();
     event.stopPropagation();
-      if (event.target.innerHTML.toString().trim() == "") {
+    if (event.target.innerHTML.toString().trim() == "") {
         event.target.style.border = "3px solid #0b80ff";
     }
 }
 function dragEnter() {
     var list = document.getElementsByClassName("user-cell");
-    for(var i = 0; i < list.length; i++){
-        if(list[i].innerHTML.toString().trim()=="" ){
-            list[i].style.border="3px dotted #04d259";
+    for (var i = 0; i < list.length; i++) {
+        if (list[i].innerHTML.toString().trim() == "") {
+            list[i].style.border = "3px dotted #04d259";
         }
     }
 }
@@ -84,10 +84,10 @@ function dragLeave(event) {
     event.target.style.border = "";
     resetHover();
 }
-function resetHover(){
+function resetHover() {
     var list = document.getElementsByClassName("user-cell");
-    for(var i = 0; i < list.length; i++){
-            list[i].style.border="";
+    for (var i = 0; i < list.length; i++) {
+        list[i].style.border = "";
     }
 }
 
