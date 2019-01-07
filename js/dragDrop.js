@@ -3,12 +3,8 @@
 var dropped_user = [];
 function load_UserList() {
     var userList = data;
-    var left_panel_template = '';
-    for (var i = 0; i < userList.length; i++) {
-        var user = userList[i];
-        left_panel_template = left_panel_template + "<div class='userList' draggable=true  ondragend='dragEnd(event)' ondragstart='drag(event)'  id='" + user.id + "'>" + user.first_name + "</div>";
-    }
-    render(left_panel_template, document.querySelector('.left-panel-outer'));
+    setLeftDataPanel(userList);
+    // Generate Right Panel Table
     var no_of_rows = 5, no_of_columns = 4;
     var right_panel_template = "";
     for (var j = 0; j < no_of_rows; j++) {
@@ -23,6 +19,14 @@ function load_UserList() {
 function render(template, node) {
     if (!node) return;
     node.innerHTML = template;
+}
+function setLeftDataPanel(userList){
+    var left_panel_template = '';
+    for (var i = 0; i < userList.length; i++) {
+        var user = userList[i];
+        left_panel_template = left_panel_template + "<div class='userList' draggable=true  ondragend='dragEnd(event)' ondragstart='drag(event)'  id='" + user.id + "'>" + user.first_name + "</div>";
+    }
+    render(left_panel_template, document.querySelector('.left-panel-outer'));
 }
 
 //Drag And Drop 
@@ -56,7 +60,7 @@ function drop(event) {
             data.find(function (item, i) {
                 if (item.id.toString().trim() == text_data.toString().trim()) {
                     index = i;
-                    dropped_user.push(item)
+                    dropped_user.push(item);
                     return i;
                 }
             });
@@ -113,12 +117,6 @@ function deleteUser(param) {
                 return item;
             }
         });
-        var userList_updated = data;
-        var left_panel_template_updated = "";
-        for (var i = 0; i < userList_updated.length; i++) {
-            var user = userList_updated[i];
-            left_panel_template_updated = left_panel_template_updated + "<div class='userList'  draggable=true ondragstart='drag(event)'  id='" + user.id + "'>" + user.first_name + "</div>";
-        }
-        render(left_panel_template_updated, document.querySelector('.left-panel-outer'));
+        setLeftDataPanel(data);
     }
 }
