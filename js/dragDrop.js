@@ -65,6 +65,8 @@ function drop(event) {
                 }
             });
             data.splice(index, 1); //Splice user from user list
+        }else{
+            alert("Please Drop user on empty cell!!");
         }
     }
     resetHover();
